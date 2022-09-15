@@ -1,0 +1,97 @@
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+body {
+    font-family: 'IBM Plex Sans KR';
+    height: 100%;
+    width: 100vw;
+}
+
+header {
+    width: 100vw;
+    height: 200px;
+    display: flex;
+    margin-top: 50px;
+}
+
+header > div{
+    flex: 1;
+}
+
+#cloth_logo{
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+}
+
+#header3{
+    position: relative;
+}
+
+#add_cloth_btn{
+    position: absolute;
+    right: 50px;
+    bottom:20px
+}
+
+main{
+    position: relative;
+}
+
+#views_title_bar{
+    text-align: center;
+    padding: 0;
+}
+
+#hide_menu{
+    padding-top:10px;
+    position: absolute;
+    display: none;
+    background-color: black;
+    width: inherit;
+}
+
+#hide_menu a{
+    color:white;
+}
+
+#hide_menu .row-cols-4{
+    text-align: start;
+}
+
+#category_bar:hover ~#hide_menu, #hide_menu:hover{
+    display: block;
+    z-index: 4;
+    opacity: 0.9;
+}
+
+.custom_btn{
+    width: 20px;
+    height: 10px;
+}
+
+#card-area{
+    border-top:1px solid black;
+    padding-top:20px;
+}
+
+#card-area .row-cols-4{
+    margin-bottom: 10px;
+}
+
+#card-area .row-cols-4 .col{
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#view_pagination{
+    margin-top:20px;
+}

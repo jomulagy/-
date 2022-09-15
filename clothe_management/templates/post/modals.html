@@ -1,0 +1,51 @@
+<div class="modal" id="modal-send-msg" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">쪽지보내기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{% url 'send_msg' %}">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <input type="text" name='prv_path' style="display:none" value='{{request.path}}'>
+                    <input type="text" name='user_id' style="display:none" value='{{post.user_id}}'>
+                    <input type="text" name='annonymous' style="display:none" value='{{post.annonymous}}'>
+
+                    내용
+                    <textarea type="text" name="text"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="submit"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="chatmodal-send-msg" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">쪽지보내기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{% url 'send_msg' %}">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <input type="text" name='prv_path' style="display:none" value='{{request.path}}'>
+                    <input type="text" name='user_id' style="display:none" value='{{user_id}}'>
+                    <input type="text" name='annonymous' style="display:none" value='{{post.annonymous}}'>
+
+                    내용
+                    <textarea type="text" name="text"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="submit"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

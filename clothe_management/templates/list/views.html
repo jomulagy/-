@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- 반복되지 않는 부분 시작 -->
+<!-- base.html 에 '반복되지 않는 부분 시작' 바로 밑줄이라고 생각하고 작성할것-->
+
+<Html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{% static 'css/views_style.css' %}">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    crossorigin="anonymous"></script>
+
+
+  <title>open your closet</title>
+</head>
+
+<body>
+
+  <header>
+    <div class="container"></div>
+    <div id="cloth_logo" class="container">
+      <a href="{% url 'clothe_view' 'all' %}">
+        <img src="{% static 'img/cloth_logo1.png' %}" alt="" height="100%">
+      </a>
+    </div>
+    <div id="header3" class="container">
+      <input type=button id="add_cloth_btn" class="btn btn-success btn-sm" value='add clothes'
+        onclick=location.href="{% url 'add_clothe' %}">
+    </div>
+
+  </header>
+
+  <main class="container">
+    <div id="views_title_bar" class="container">
+      <div id="category_bar" class="row row-cols-4">
+        <div class="col">Category</div>
+        <div class="col">Season</div>
+        <div class="col">Style</div>
+        <div class="col">Color</div>
+      </div>
+      <div id="hide_menu" class="container">
+        <div class="row row-cols-4">
+          <div class="col">
+            <ul class="first_ul">
+              <li>
+                <a href="{% url 'clothe_view' 'parent_category?=top' %}">Top</a>
+                <ul>
+                  <li><a href="{% url 'clothe_view' 'child_category?=긴팔' %}">긴팔</a></li>
+                  <li><a href="{% url 'clothe_view' 'child_category?=반팔' %}">반팔</a></li><br>
+                </ul>
+              </li>
+              <li>
+                <a href="{% url 'clothe_view' 'parent_category?=bottom' %}">Bottom</a>
+                <ul>
+                  <li><a href="{% url 'clothe_view' 'child_category?=긴바지' %}">긴바지</a></li>
+                  <li><a href="{% url 'clothe_view' 'child_category?=반바지' %}">반바지</a></li><br>
+                </ul>
+              </li>
+              <li>
+                <a href="{% url 'clothe_view' 'parent_category?=shoes' %}">Shoes</a>
+                <ul>
+                  <li><a href="{% url 'clothe_view' 'child_category?=운동화' %}">운동화</a></li>
+                  <li><a href="{% url 'clothe_view' 'child_category?=구두' %}">구두</a></li>
+                  <li> <a href="{% url 'clothe_view' 'child_category?=슬리퍼' %}">슬리퍼</a></li><br>
+                </ul>
+              </li>
+              <li>
+                <a href="{% url 'clothe_view' 'parent_category?=ACCs' %}">ACCs</a>
+                <ul>
+                  <li><a href="{% url 'clothe_view' 'child_category?=시계' %}">시계</a></li>
+                  <li><a href="{% url 'clothe_view' 'child_category?=가방' %}">가방</a></li><br>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="col">
+            <ul class="first_ul">
+              <li><a href="{% url 'clothe_view' 'season?=봄' %}">Spring</a></li><br>
+              <li><a href="{% url 'clothe_view' 'season?=여름' %}">Summer</a></li><br>
+              <li><a href="{% url 'clothe_view' 'season?=가을' %}">Fall</a></li><br>
+              <li><a href="{% url 'clothe_view' 'season?=겨울' %}">Winter</a></li><br>
+            </ul>
+          </div>
+          <div class="col">
+            <ul class="first_ul">
+              <li><a href="{% url 'clothe_view' 'style?=스트릿' %}">Street</a></li><br>
+              <li><a href="{% url 'clothe_view' 'style?=캐주얼' %}">Casual</a></li><br>
+              <li><a href="{% url 'clothe_view' 'style?=댄디' %}">Dandy</a></li><br>
+              <li><a href="{% url 'clothe_view' 'style?=스포츠' %}">Sports</a></li><br>
+              <li><a href="{% url 'clothe_view' 'style?=포멀' %}">Formal</a></li><br>
+              <li><a href="{% url 'clothe_view' 'style?=레트로' %}">Retro</a></li><br>
+            </ul>
+          </div>
+          <div class="col">
+            <ul class="first_ul">
+              <li><input type="button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=빨강' %}" style="background-color: red;">
+              </li>
+              <li> <input type="button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=주황' %}" style="background-color: orange;">
+              </li>
+              <li> <input type="button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=노랑' %}" style="background-color: yellow;">
+              </li>
+              <li> <input type="button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=초록' %}" style="background-color: green;">
+              </li>
+              <li> <input type="button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=파랑' %}" style="background-color: blue;">
+              </li>
+              <li> <input type="button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=남색' %}" style="background-color: darkblue;">
+              </li>
+              <li> <input type="button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=보라색' %}" style="background-color: purple;"">
+              </li>
+              <li> <input type=" button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=검은색' %}"
+                  style="background-color: black; border: 1px white solid;">
+              </li>
+              <li> <input type="button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=회색' %}" style="background-color: gray;">
+              </li>
+              <li> <input type="button" class="custom_btn" name="color"
+                  onclick=location.href="{% url 'clothe_view' 'color?=흰색' %}" style="background-color: white;">
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div id="card-area" class='container'>
+
+    </div>
+  </main>
+
+
+
+  <nav id="view_pagination" aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled"><a class="page-link">Previous</a></li>
+      <li class="page-item"><a class="page-link">Next</a></li>
+    </ul>
+  </nav>
+  </div>
+
+  <script type="text/javascript">var image_urls = "{{img_urls}}"; var clothe_ids = "{{clothe_ids}}";</script>
+  <script src="{% static 'js/clothe/views.js' %}"></script>
+</body>
+
+</Html>
+
+<!-- 반복되지 않는 부분 끝 -->
+{% endblock content %}

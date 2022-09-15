@@ -1,0 +1,35 @@
+#search_area {
+    border-radius: 5px 0px 0px 5px;
+}
+
+#search_btn {
+    background-size: 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../img/search.png');
+    padding: 1px;
+    width: 30px;
+    height: 30px;
+    border: 0px;
+    border-radius: 0px 5px 5px 0px;
+}
+
+#base_logo {
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    border: 0px;
+    background-image: url('../img/logo.png');
+}
+
+
+#nav_content {
+    justify-content: flex-start;
+}
+
+#hamburger_btn {
+    position: absolute;
+    right: 20px;
+}

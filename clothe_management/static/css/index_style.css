@@ -1,0 +1,183 @@
+@font-face {
+  font-family: 'GangwonEduPowerExtraBoldA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background: #eee;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.blackbar{
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  height: 7vh;
+  top: 93vh;
+}
+
+/*header*/
+
+header {
+  position: relative;
+  height: 100vh;
+  background-image: url('../img/main1.png');
+  background-size: cover;
+}
+
+/*main*/
+
+main {
+  height: 100vh;
+  position: relative;
+  background-image: url('../img/main2.jpg');
+  background-size: cover;
+}
+
+main #main_title {
+  padding-top: 10px;
+  font-family: 'GangwonEduPowerExtraBoldA';
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 80px;
+}
+
+main #index_container {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+main #index_container::after {
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.5;
+  background-color: black;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  padding-top: 3%;
+}
+
+section div {
+  width: 70vw;
+  height: auto;
+}
+
+/*footer*/
+
+footer {
+  height: 100vh;
+  position: relative;
+  background-color: white;
+}
+
+footer .sa-up{
+  width: 90vw;
+  height: 100vh;
+}
+
+footer .sa-left{
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  right: 10vw;
+  bottom: 35vh;
+  width: 200px;
+  border-right: 1px solid black;
+  border-width: 200%;
+}
+
+footer .sa-left div{
+  border-bottom: black solid 1px;
+  font-family: 'S-CoreDream-3Light';
+  text-align: end;
+  padding-right: 10px;
+}
+
+/* Scroll Animation (sa, 스크롤 애니메이션) */
+.sa {
+  opacity: 0;
+  transition: all .5s ease;
+}
+
+/* 왼쪽에서 오른쪽으로 페이드 인 */
+.sa-right {
+  transform: translate(-100px, 0);
+}
+
+.sa-up {
+  transform: translate(0, 100px);
+  width: 100%;
+  height: 100%;
+}
+
+.sa-left {
+  transform: translate(100px, 0);
+}
+
+.sa.show {
+  opacity: 1;
+  transform: none;
+}
+
+
+<!--swiper-->
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination {
+  top: 90%;
+}

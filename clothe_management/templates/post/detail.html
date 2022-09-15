@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+<!-- 반복되지 않는 부분 시작 -->
+<!-- base.html 에 '반복되지 않는 부분 시작' 바로 밑줄이라고 생각하고 작성할것-->
+
+
+{% include "post/modals.html" %}
+
+
+
+
+
+<!-- <input type='button' value = '쪽지보내기' data-bs-toggle="modal" data-bs-target="#modal-send-msg"> -->
+
+
+<script type = 'text/javascript'>var post_id = "{{post.id}}"</script>
+<script type = "text/javascript" src = "{% static 'js/post/post.js' %}"></script>
+<!-- 반복되지 않는 부분 끝 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+    <title>Document</title>
+
+    
+</head>
+<body>
+    <div class="high_btn">
+        <input type='button' onclick=location.href="{% url 'chattings' '0' %}" value = '채팅목록'>
+        <input type='button' onclick=location.href="{% url 'settings' %}" value = '프사'>
+    </div>
+    
+
+    <div class="main_btn">
+        <input type='button' onclick=location.href="{% url 'boards' '자유게시판'%}" value = '자유게시판'>
+        <input type='button' onclick=location.href="{% url 'boards' '사고팔고'%}" value = '사고팔고'>
+        <input type='button' onclick=location.href="{% url 'boards' '소통방'%}" value = '소통방'>
+        <input type='button' onclick=location.href="{% url 'boards' '공시사항'%}" value = '공시사항'>
+        <input type='button' onclick=location.href="{% url 'boards' '고객센터'%}" value = '고객센터'>
+    </div>
+
+    <div class="free_post">
+        <div class="free_title">
+            <b>자유게시판</b>
+        </div>
+
+        <div class="post_detail_main">
+            <div class="writer_profile">
+                <img class="account_pf" src="../../static/img/account.png">
+                {{post.writer}}
+                <br>
+                {{post.get_time}}
+            </div>
+
+            <div class="delete">
+                <input class="correct_btn" type="button" value="수정">
+                <input class="delete_btn" type="button" value="삭제">
+            </div>
+
+            <div class="title">
+                title:{{post.title}}
+            </div>
+
+            <div class="content">
+                content:{{post.content}}
+            </div>
+
+            <div class="like">
+                {{post.likes}}, 댓글, 별
+            </div>
+
+            <div class="like_btn">
+                <input id = "btn-like" type='button' value = '좋아요'>  스크랩  
+            </div>
+
+            <div class="comment">
+                <input class="input" placeholder="댓글을 입력해주세요." type="text">
+                <input class="comment_btn" type="button" value="글쓰기">
+            </div>
+
+            <div class="content_list">
+                <input class="input_btn" type="button" value="글목록">
+            </div>
+        </div>
+    </div>
+
+    <div class="real_time_hot">
+        <div class="real_time">
+          <div class="real_time_title">
+            실시간게시판
+          </div>
+          <div class="real_time_content">
+          <br>
+          {% for data in time %}
+              {{data.title}}
+          {% endfor %}
+          </div>
+        </div>
+        <div class="hot">
+          <div class="hot_title">
+            hot게시판
+          </div>
+          <div class="hot_content">
+          <br>
+          {% for data in hot %}
+              {{data.title}}
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    
+</body>
+</html>
+{% endblock content %}

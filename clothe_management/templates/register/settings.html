@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- 반복되지 않는 부분 시작 -->
+<!-- base.html 에 '반복되지 않는 부분 시작' 바로 밑줄이라고 생각하고 작성할것-->
+<a href="{% url 'logout' %}">Log Out</a>
+<image src = "{{user.image}}"></image>
+{{user.get_full_name}}
+회원가입일 : {{user.get_date_joined}}
+
+<form class="user" method = "post" action = "{% url 'register' %}">
+    {% csrf_token %}
+    {% include 'login/form_error.html' %}
+
+    <div class="mb-3">
+        First name<br>
+        <input type="text" class="form-control" name = "first_name" placeholder="First Name">
+    </div>
+    <div class="mb-3">
+        Last Name<br>
+        <input type="text" class="form-control" name = "last_name">
+    </div>
+    <div class="mb-3">
+        Id(email)<br>
+        <input type="email" class="form-control" name = "username" autocomplete = "off">
+    </div>
+    <div class="mb-3">
+        Password<br>
+        <input type="password" class="form-control" name = "password1" autocomplete = "off">
+    </div>
+    <div class="mb-3">
+        비밀번호 확인
+        <input type="password" class="form-control" name = "password2" autocomplete = 'off'>
+    </div>
+    <div class="mb-3">
+        성별
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">남</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">여</label>
+    </div>
+    <div class="mb-3">
+        나이
+        <input type = 'number' class="form-control" name = "age">
+    </div>
+    <input type = 'submit'  class="btn btn-success" value="Create Account">
+</form>
+<!-- 반복되지 않는 부분 끝 -->
+{% endblock content %}

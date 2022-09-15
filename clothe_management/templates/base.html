@@ -1,0 +1,307 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{% static 'css/base_style.css' %}">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    crossorigin="anonymous"></script>
+
+
+
+  <title>open your closet</title>
+</head>
+
+<body>
+
+  <nav class="navbar sticky-top navbar-dark bg-black text-white fixed-top">
+    <div class="container-fluid" id="nav_content">
+
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <input class="d-inline-block align-text-top" id="base_logo" type='button'
+          onclick=location.href="{% url 'home' %}">
+        Open Your Closet</a>
+
+      <form action="{% url 'search' %}" method="post">
+        {% csrf_token %}
+
+        <input class="d-inline-block align-text-top" id="search_area" type="search" name="keyward" id='keyward'>
+        <input class="d-inline-block align-text-top" id="search_btn" type="submit" value="">
+
+        <input type='text' name='username' value="{{user.id}}" style="display: none;">
+
+      </form>
+
+      <button id="hamburger_btn" class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasWithBothOptions">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end bg-black text-white" tabindex="-1" id="offcanvasNavbar" 
+        aria-labelledby="offcanvasNavbarLabel" data-bs-backdrop="static">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Open Your Closet</h5>
+          <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body bg-black">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'clothe_view' 'all' %}">All Products</a>
+            </li>
+
+            <li class="nav-item">
+              <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item bg-black text-white">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed bg-black text-white" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                      aria-controls="flush-collapseOne">
+                      Top
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'category?=긴팔' %}">긴팔</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'category?=반팔' %}">반팔</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item bg-black text-white">
+                  <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed bg-black text-white" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                      aria-controls="flush-collapseTwo">
+                      Bottom
+                    </button>
+                  </h2>
+                  <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'child_category?=긴바지' %}">긴바지</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'child_category?=반바지' %}">반바지</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item bg-black text-white">
+                  <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed bg-black text-white" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"
+                      aria-controls="flush-collapseThree">
+                      Shoes
+                    </button>
+                  </h2>
+                  <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'child_category?=운동화' %}">운동화</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'child_category?=구두' %}">구두</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'child_category?=슬리퍼' %}">슬리퍼</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item bg-black text-white">
+                  <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed bg-black text-white" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false"
+                      aria-controls="flush-collapseFour">
+                      ACCs
+                    </button>
+                  </h2>
+                  <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'child_category?=시계' %}">시계</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'child_category?=가방' %}">가방</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item bg-black text-white">
+                  <h2 class="accordion-header" id="flush-headingFive">
+                    <button class="accordion-button collapsed bg-black text-white" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false"
+                      aria-controls="flush-collapseFive">
+                      Season
+                    </button>
+                  </h2>
+                  <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'season?=봄' %}">spring</a>
+
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'season?=여름' %}">summer</a>
+
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'season?=가을' %}">fall</a>
+
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'season?=겨울' %}">winter</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item bg-black text-white">
+                  <h2 class="accordion-header" id="flush-headingSix">
+                    <button class="accordion-button collapsed bg-black text-white" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false"
+                      aria-controls="flush-collapseSix">
+                      Community
+                    </button>
+                  </h2>
+                  <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'chattings' '0' %}">Mesage</a>
+                          {{user.set_unread_messages}}
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item bg-black text-white">
+                  <h2 class="accordion-header" id="flush-headingSeven">
+                    <button class="accordion-button collapsed bg-black text-white" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false"
+                      aria-controls="flush-collapseSeven">
+                      Style
+                    </button>
+                  </h2>
+                  <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'style?=스트릿' %}">street</a>
+                        </li>
+                        <li>
+
+                          <a class="nav-link" href="{% url 'clothe_view' 'style?=캐주얼' %}">casual</a>
+
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'style?=댄디' %}">dandy</a>
+
+
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'style?=스포츠' %}">sports</a>
+
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'style?=포멀' %}">formal</a>
+
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'clothe_view' 'style?=레트로' %}">retro</a>
+                        </li>
+                        
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </li>
+            
+            <li class="nav-item ">
+              <a class="nav-link active" href="{% url 'mylooks' %}">My Looks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'favorite' %}">Favorites</a>
+            </li>
+            <li class="nav-item">
+              <a class = "nav-link active" href="{% url 'weather' %}">Today's Pick</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'logout' %}">Log Out</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'settings' %}">Settings</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+  <script type="text/javascript">var keyward = "{{keyward}}"</script>
+  <script
+    type="text/javascript">var dict_category = { 'top': ['긴팔', '반팔'], 'bottom': ['긴바지', '반바지'], 'shoes': ['운동화', '구두', '슬리퍼'], 'ACCs': ['시계', '가방'] }</script>
+  
+    <!-- 반복되지 않는 부분 시작-->
+  {% block content %}
+  {% endblock content %}
+  <!-- 반복되지 않는 부분 끝-->
+
+</body>
+
+</html>

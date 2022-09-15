@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- 반복되지 않는 부분 시작 -->
+<!-- base.html 에 '반복되지 않는 부분 시작' 바로 밑줄이라고 생각하고 작성할것-->
+<a href="{% url 'my_post' %}">my post</a>
+{% include "post/base.html" %}
+{% include "post/side.html" %}
+{% for data in posts %}
+    <a href = "{% url 'post_detail' title data.id %}">
+        title:{{data.title}}<br>
+        {{data.content}}<br>
+        {{data.created_string}}<br>
+        {{data.writer}}<br>
+        {{data.likes}}<br>
+        댓글개수
+        <hr>
+    </a>
+{% endfor %}
+
+<!-- 반복되지 않는 부분 끝 -->
+{% endblock content %}

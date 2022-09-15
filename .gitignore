@@ -1,0 +1,6 @@
+.venv
+venv
+mysettings.py
+*.pyc
+*.pyc
+*.pyc

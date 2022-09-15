@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'IBM Plex Sans KR';
+    height: 100%;
+    width: 100vw;
+}
+
+
+header {
+    width: 100vw;
+    height: 200px;
+    display: flex;
+    margin-top: 50px;
+}
+
+header > div{
+    flex: 1;
+}
+
+#logo_div{
+    display: flex;
+    justify-content: center;
+}
+#weather_logo{
+    object-fit: contain;
+}
+
+.weather > div{
+    margin: 10px;
+    text-align: center;
+    font-family: 'GangwonEduPowerExtraBoldA';
+}
+
+
+main {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main #main_text{
+    margin-left: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-family: 'SBAggroB';
+}
+main #todayweather{
+    color: blue;
+
+}
+
+<!-- 날씨-->
+
+.fa-sun{
+    color:#f6e937
+}
+.fa-cloud-sun{
+
+}
+.fa-cloud-meatball{
+    color:gray;
+}

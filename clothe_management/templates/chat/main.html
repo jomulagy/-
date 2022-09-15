@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- 반복되지 않는 부분 시작 -->
+<!-- base.html 에 '반복되지 않는 부분 시작' 바로 밑줄이라고 생각하고 작성할것-->
+
+{% include 'post/modals.html' %}
+
+{% for chatroom in chatrooms %}
+
+    <a href = "{% url 'chattings' chatroom.id %}">
+        {% for user in chatroom.users.all %}
+            {% if user != request.user %}
+                {% if chatroom.annonymous == True %}
+                    <p>익명</p>
+                {% else %}
+                    <p>{{user.get_full_name}}</p>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        <p>{{chatroom.message_set.all.last.text}}</p>
+        <p>{{chatroom.message_set.all.last.get_time}}</p>
+    </a>
+{% endfor %}
+{% if detail == True %}
+    <!-- 채팅하는 사람 이름은 js 로 처리(복잡하고 귀찮고 비효율적임 ㅋㅋ ㅅㄱ)-->
+    <input type='button' value = '쪽지보내기' data-bs-toggle="modal" data-bs-target="#chatmodal-send-msg">
+    <!--새로고침은 js reload사용-->
+    {% for chat in chat_detail %}
+        {% if chat.user == request.user %}
+            <p>보낸쪽지</p>
+        {% else %}
+            <p>받은쪽지</p>
+        {% endif %}
+        {{chat.get_time}}
+        {{chat.text}}
+    {% endfor %}
+    
+{% endif %}
+
+<!-- 반복되지 않는 부분 끝 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/chat_main.css' %}">
+    <title>Chatting</title>
+</head>
+<body>
+    <div class="high_btn">
+        <input type='button' onclick=location.href="{% url 'chattings' '0' %}" value = '채팅목록'>
+        <input type='button' onclick=location.href="{% url 'settings' %}" value = '프사'>
+    </div>
+    
+
+    <div class="main_btn">
+        <input type='button' onclick=location.href="{% url 'boards' '자유게시판'%}" value = '자유게시판'>
+        <input type='button' onclick=location.href="{% url 'boards' '사고팔고'%}" value = '사고팔고'>
+        <input type='button' onclick=location.href="{% url 'boards' '소통방'%}" value = '소통방'>
+        <input type='button' onclick=location.href="{% url 'boards' '공시사항'%}" value = '공시사항'>
+        <input type='button' onclick=location.href="{% url 'boards' '고객센터'%}" value = '고객센터'>
+    </div>
+    
+
+    <div class="chat_list">
+        <div class="chat_title">
+            <p><b>채팅 목록</b></p>
+        </div>
+
+        <div class="chat_list_num">
+            <div class="name">
+                <b>익명</b>
+            </div>
+
+            <div class="chat_comment">
+                채팅내용
+            </div>
+
+            <div class="chat_time">
+                03/14 12:30
+            </div>
+        </div>
+
+        <div class="chat_list_num">
+            <div class="name">
+                <b>익명</b>
+            </div>
+
+            <div class="chat_comment">
+                채팅내용
+            </div>
+
+            <div class="chat_time">
+                03/14 12:30
+            </div>
+        </div>
+
+        <div class="chat_list_num">
+            <div class="name">
+                <b>익명</b>
+            </div>
+
+            <div class="chat_comment">
+                채팅내용
+            </div>
+
+            <div class="chat_time">
+                03/14 12:30
+            </div>
+        </div>
+
+        <div class="chat_list_num">
+            <div class="name">
+                <b>익명</b>
+            </div>
+
+            <div class="chat_comment">
+                채팅내용
+            </div>
+
+            <div class="chat_time">
+                03/14 12:30
+            </div>
+        </div>
+
+        <div class="chat_list_num">
+            <div class="name">
+                <b>익명</b>
+            </div>
+
+            <div class="chat_comment">
+                채팅내용
+            </div>
+
+            <div class="chat_time">
+                03/14 12:30
+            </div>
+        </div>
+    </div>
+
+    <div class="send_msg">
+        <div class="send_title">
+            <p><b>익명</b></p>
+            <div class="msg_btn">
+                <input class="msg" type='button'  value = '쪽지보내기'>
+                <input class="msg" type='button' value = '새로고침'>
+                <input class="msg" type='button' value = '더보기'>
+            </div>
+        </div>
+
+        <div class="msg_block">
+            <div class="get_msg_title">
+                받은쪽지
+            </div>
+            <div class="comment">
+                담배줭
+            </div>
+
+            <div class="msg_time">
+                03/15 12:30
+            </div>
+        </div>
+
+        <div class="msg_block">
+            <div class="get_msg_title">
+                보낸쪽지
+            </div>
+            <div class="comment">
+                담배줭
+            </div>
+
+            <div class="msg_time">
+                03/15 12:30
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock content %}

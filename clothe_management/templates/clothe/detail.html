@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- 반복되지 않는 부분 시작 -->
+<!-- base.html 에 '반복되지 않는 부분 시작' 바로 밑줄이라고 생각하고 작성할것-->
+<Html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/detail_style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+    <title>open your closet</title>
+
+</head>
+
+<body>
+    <main>
+
+        <form id="add_cloth_form" class="user" method="post" action="{% url 'add_clothe' %}"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row align-items-center">
+            <div id="input_img" class="container col">
+                <input type="file" name='image' id='form-img' style="display:none">
+                <button id='btn-img'>
+                    <img src = "{{clothe.image.url}}">
+                </button>
+            </div>
+
+            <div id="input_text" class="container col">
+                <div id="input_name" class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">이름</span>
+                    <input class="form-control" type="text" name='name' value = "{{clothe.name}}">
+                </div>
+
+                <div id="input_category" class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Category</span>
+                    <select class="form-select" id='select-parent' required name='parent_category'>
+                        <option value="" disabled selected style="display:none">상위항목</option>
+                    </select>
+                    <select class="form-select" id='select-child' required name='child_category'>
+                        <option value="" disabled selected style="display:none">하위항목</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3" id="position_flex1">
+                    <span class="input-group-text" id="basic-addon1">Season</span>
+
+                    <input class="form-check-input mt-0 btn-check" id="option1" type="radio" name="season" value="봄">
+                    <label id="sbtn1" class="btn btn-light" for="option1">봄</label>
+
+                    <input class="form-check-input mt-0 btn-check" id="option2" type="radio" name="season" value="여름">
+                    <label id="sbtn2" class="btn btn-light" for="option2">여름</label>
+
+
+                    <input class="form-check-input mt-0 btn-check" id="option3" type="radio" name="season" value="가을">
+                    <label id="sbtn3" class="btn btn-light" for="option3">가을</label>
+
+                    <input class="form-check-input mt-0 btn-check" id="option4" type="radio" name="season" value="겨울">
+                    <label id="sbtn4" class="btn btn-light" for="option4">겨울</label>
+
+                </div>
+
+                <div class="input-group mb -3" id="position_flex2">
+                    <span class="input-group-text" id="basic-addon2">Style</span>
+
+                    <input class="form-check-input mt-1 btn-check" id="option11" type="radio" name="style" value="댄디">
+                    <label id="tbtn1" class="btn btn-light" for="option11">댄디</label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option12" type="radio" name="style" value="포멀">
+                    <label id="tbtn2" class="btn btn-light" for="option12">포멀</label>
+
+
+                    <input class="form-check-input mt-1 btn-check" id="option13" type="radio" name="style" value="스포츠">
+                    <label id="tbtn3" class="btn btn-light" for="option13">스포츠</label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option14" type="radio" name="style" value="레트로">
+                    <label id="tbtn4" class="btn btn-light" for="option14">레트로</label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option15" type="radio" name="style" value="캐주얼">
+                    <label id="tbtn5" class="btn btn-light" for="option15">캐주얼</label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option16" type="radio" name="style" value="스트릿"> 
+                    <label id="tbtn6" class="btn btn-light" for="option16">스트릿</label>
+
+                </div>
+
+                <div class="input-group mb -3" id="position_flex3">
+                    <span class="input-group-text" id="basic-addon3">Color</span>
+
+                    <input class="form-check-input mt-1 btn-check" id="option21" type="radio" name="color" value="빨강">
+                    <label id="cbtn1" class="btn" for="option21" style="background-color: red;"></label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option22" type="radio" name="color" value="주황">
+                    <label id="cbtn2" class="btn" for="option22" style="background-color: orange;"></label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option23" type="radio" name="color" value="노랑">
+                    <label id="cbtn3" class="btn" for="option23" style="background-color: yellow;"></label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option24" type="radio" name="color" value="초록">
+                    <label id="cbtn4" class="btn" for="option24" style="background-color: green;"></label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option25" type="radio" name="color" value="파랑">
+                    <label id="cbtn5" class="btn" for="option25" style="background-color: blue;"></label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option26" type="radio" name="color" value="남색">
+                    <label id="cbtn6" class="btn" for="option26" style="background-color: navy;"></label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option27" type="radio" name="color" value="보라색">
+                    <label id="cbtn7" class="btn" for="option27" style="background-color: purple;"></label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option28" type="radio" name="color" value="검은색">
+                    <label id="cbtn8" class="btn" for="option28" style="background-color: black;"></label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option29" type="radio" name="color" value="회색">
+                    <label id="cbtn9" class="btn" for="option29" style="background-color:gray;"></label>
+
+                    <input class="form-check-input mt-1 btn-check" id="option210" type="radio" name="color" value="흰색">
+                    <label id="cbtn10" class="btn" for="option210"
+                        style="background-color: white; border: 1px black solid"></label>
+
+
+                </div>
+            </div>
+            </div>
+            <div class="w-100"></div>
+            <div id="input_memo_div" class="input-group mb-3 row" style="border: none;">
+                <span class="input-group-text" id="basic-addon4">메모</span>
+                <input id="input_memo" type="text" name="memo" value = "{{clothe.memo}}">
+            </div>
+            <footer id="submit_btn">
+                <input class="btn" type='submit' value="제출">
+            </footer>
+        </form>
+    </main>
+
+    <script type = "text/javascript">
+        var cur_parent = "{{clothe.parent_category}}";
+        var cur_child = "{{clothe.child_category}}";
+        var cur_season = "{{clothe.season}}";
+        var cur_style = "{{clothe.style}}";
+        var cur_color = "{{clothe.color}}";
+    </script>
+    <script src="{% static 'js/clothe/detail.js' %}"></script>
+</body>
+
+</Html>
+
+<!-- 반복되지 않는 부분 끝 -->
+{% endblock content %}

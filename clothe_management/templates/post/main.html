@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- 반복되지 않는 부분 시작 -->
+<!-- base.html 에 '반복되지 않는 부분 시작' 바로 밑줄이라고 생각하고 작성할것-->
+
+
+<!-- <form action="{% url 'search' %}" method="post">
+    {% csrf_token %}
+
+    <input class="d-inline-block align-text-top" id="search_area" type="search" name="keyward" id='keyward'>
+    <input class="d-inline-block align-text-top" id="search_btn" type="submit" value="">
+
+    <input type='text' name='username' value="{{user.id}}" style="display: none;">
+
+  </form>
+<img src = "{{user.image}}"> -->
+
+<!-- 반복되지 않는 부분 끝 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/community_mainpage.css' %}">
+  <title>Document</title>
+  
+</head>
+<body>
+    <div class="high_btn">
+      <input type='button' onclick=location.href="{% url 'chattings' '0' %}" value = '채팅목록'>
+      <input type='button' onclick=location.href="{% url 'settings' %}" value = '프사'>
+    </div>
+
+    <div class="main_btn">
+      <input type='button' onclick=location.href="{% url 'boards' '자유게시판'%}" value = '자유게시판'>
+      <input type='button' onclick=location.href="{% url 'boards' '사고팔고'%}" value = '사고팔고'>
+      <input type='button' onclick=location.href="{% url 'boards' '소통방'%}" value = '소통방'>
+      <input type='button' onclick=location.href="{% url 'boards' '공시사항'%}" value = '공시사항'>
+      <input type='button' onclick=location.href="{% url 'boards' '고객센터'%}" value = '고객센터'>
+    </div>
+    
+    <div class="account">
+      <div class="account_box">
+      <div class="account_btn">
+      <img class="ac_img" src="../../static/img/account.png">
+      <p>연추리</p>
+      </div>
+      <div class="account_btn2">
+        <input type='button' onclick=location.href="{% url 'settings' %}" value = "내정보">
+        <input type='button' onclick=location.href="{% url 'logout' %}" value = "로그아웃">
+      </div>
+      </div>
+      <div class="account_box1">
+              <ul class="account_box1_btn">
+                <li><input type='button' onclick=location.href="{% url 'my_post' '내가쓴글' %}" value = "내가 쓴 글"></li>
+                <li><input type='button' onclick=location.href="{% url 'my_post' '댓글단글' %}" value = "댓글 단 글"></li>
+                <li><input type='button' onclick=location.href="{% url 'my_post' '스크랩' %}" value = "스크랩"></li>
+              </ul>
+      </div>
+    </div>
+
+    <div class="free_post">
+      <div class="free_title">
+        자유게시판
+      </div>
+      <div class="post1">
+        
+        <div class="posting_img">
+          <img class="post1_img" src="../../static/img/account.png">
+        </div>
+
+        <div class="posting_title">
+          그렌디오 반팔티셔츠 중고
+        </div>
+
+        <div class="posting_explain">
+          어쩌고 저쩌고
+        </div>
+
+        <div class="posting_day">
+          2022.02.08 11:03:05
+        </div>
+        
+      </div>
+
+      <div class="post2">
+        <div class="posting_img">
+          <img class="post1_img" src="../../static/img/account.png">
+        </div>
+
+        <div class="posting_title">
+          콤데즈컴바인 팬티
+        </div>
+
+        <div class="posting_explain">
+          어쩌고 저쩌고
+        </div>
+
+        <div class="posting_day">
+          2022.02.08 11:03:05
+        </div>
+      </div>
+
+      <div class="post3">
+        <div class="posting_img">
+          <img class="post1_img" src="../../static/img/account.png">
+        </div>
+
+        <div class="posting_title">
+          나시티
+        </div>
+
+        <div class="posting_explain">
+          어쩌고 저쩌고
+        </div>
+
+        <div class="posting_day">
+          2022.02.08 11:03:05
+        </div>
+      </div>
+
+      <div class="search_area">
+        <div class="search_img">
+        <img class="search_img1"src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+        </div>
+        <input type="text" placeholder="전체 게시판 글을 입력하세요.">
+      </div>
+
+      <div class="real_time_hot">
+        <div class="real_time">
+          <div class="real_time_title">
+            실시간게시판
+          </div>
+          <br>
+          {% for data in time %}
+              {{data.title}}
+          {% endfor %}
+        </div>
+        <div class="hot">
+          <div class="hot_title">
+            hot게시판
+          </div>
+          <br>
+          {% for data in hot %}
+              {{data.title}}
+          {% endfor %}
+        </div>
+      </div>
+
+   
+</body>
+</html>
+
+{% endblock content %}
+
+

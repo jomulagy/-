@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- 반복되지 않는 부분 시작 -->
+<!-- base.html 에 '반복되지 않는 부분 시작' 바로 밑줄이라고 생각하고 작성할것-->
+
+<blockquote class="blockquote">
+    <p>"{{keyward}}"에 대한 검색결과</p>
+</blockquote>
+<div id = "card-area" class = 'container'></div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item disabled"><a class="page-link" >Previous</a></li>
+      <li class="page-item"><a class="page-link" >Next</a></li>
+    </ul>
+  </nav>
+</div>
+<script type = "text/javascript">var clothes = "{{clothes}}"</script>
+<script src = "{% static 'js/clothe/search.js' %}"></script>
+<!-- 반복되지 않는 부분 끝 -->
+{% endblock content %}
