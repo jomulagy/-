@@ -68,8 +68,8 @@ def list(request, view_for):
     img_urls = []
     clothe_ids = []
     datas = []
-
     userid = request.user.id
+    print(view_for)
     if view_for == 'all':
         datas = clothe.objects.filter(user_id = userid)
     elif 'parent_category' in view_for:
@@ -77,6 +77,7 @@ def list(request, view_for):
         datas = clothe.objects.filter(user_id = userid,parent_category = parent_category)
     elif 'child_category' in view_for:
         child_category = view_for[view_for.find('?=')+2:]
+        print(child_category)
         datas = clothe.objects.filter(user_id = userid,child_category = child_category)
     elif 'season' in view_for:
         season = view_for[view_for.find('?=')+2:]
@@ -87,9 +88,13 @@ def list(request, view_for):
     elif 'color' in view_for:
         color = view_for[view_for.find('?=')+2:]
         datas = clothe.objects.filter(user_id = userid,color = color)
+    else:
+        print("error")
+    print(datas)
     for data in datas:
         img_urls.append(data.image.url)
         clothe_ids.append(data.id)
+    print(img_urls)
     context = {
         'img_urls':img_urls,
         'clothe_ids':clothe_ids

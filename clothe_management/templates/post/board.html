@@ -9,15 +9,25 @@
 <input type='button' onclick=location.href="{% url 'new_post' title %}" value = '글쓰기'>
 
 {% for data in posts %}
-    <a href = "{% url 'post_detail' title data.id %}">
-        title:{{data.title}}<br>
-        {{data.content}}<br>
-        {{data.created_string}}<br>
-        {{data.writer}}<br>
-        {{data.likes}}<br>
-        댓글개수
-        <hr>
-    </a>
+    {% if title == '고객센터' %}
+        <a href = "{% url 'post_detail' title data.id %}">
+            title:{{data.title}}<br>
+            {{data.content}}<br>
+            {{data.created_string}}<br>
+            {{data.writer}}<br>
+            <hr>
+        </a>
+    {% else %}
+        <a href = "{% url 'post_detail' title data.id %}">
+            title:{{data.title}}<br>
+            {{data.content}}<br>
+            {{data.created_string}}<br>
+            {{data.writer}}<br>
+            {{data.likes}}<br>
+            댓글개수
+            <hr>
+        </a>
+    {% endif %}
 {% endfor %}
 
 <!-- 반복되지 않는 부분 끝 -->
