@@ -19,17 +19,21 @@ from selenium.webdriver.common.keys import Keys
 import string
 import random
 import time
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 img_urls=[]
 page_urls=[]
+
 def loading(request):
     return render(request,'loading.html')
 
 def load_img(request):
 
     options = webdriver.ChromeOptions() # 크롬 옵션 객체 생성
-    # options.add_argument('headless') # headless 모드 설정
-    # options.add_argument("window-size=1920x1080") # 화면크기(전체화면)
+    options.add_argument('headless') # headless 모드 설정
+    options.add_argument("window-size=1920x1080") # 화면크기(전체화면)
     # options.add_argument("disable-gpu") 
     # options.add_argument("disable-infobars")
     # options.add_argument("--disable-extensions")
@@ -48,22 +52,20 @@ def load_img(request):
     driver.get('https://www.hiver.co.kr/')
     WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='adaptive']/div/div/button[2]")))
     driver.find_element(By.XPATH,"//*[@id='adaptive']/div/div/button[2]").click()
-    for i in range(3,13):
-        
-        WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='adaptive']/div/ul/li["+str(i)+"]/img")))
+    for i in range(3,8):
         img = driver.find_element(By.XPATH,"//*[@id='adaptive']/div/ul/li["+str(i)+"]/img")
+        while img.get_dom_attribute("src") == None:
+            img = driver.find_element(By.XPATH,"//*[@id='adaptive']/div/ul/li["+str(i)+"]/img")
         img_urls.append(img.get_attribute("src"))
-        print(img.get_attribute("src"))
         driver.find_element(By.XPATH,"//*[@id='adaptive']/div").click()
         page_urls.append(driver.current_url)
-        print(driver.current_url)
         time.sleep(1)
         driver.back()
 
         driver.find_element(By.XPATH,"//*[@id='adaptive']/div/button[2]").click()
         time.sleep(1)
     driver.quit()
-
+    
     return redirect(home)
 
 
@@ -88,9 +90,9 @@ def login(request):
     return render(request,"login/login.html")
 
 def home(request):
-    urls = list(zip(img_urls, page_urls))
+    index_urls = list(zip(img_urls, page_urls))
     context = {
-        "urls" : urls,
+        "urls" : index_urls,
     }
     return render(request, 'index.html',context)
 
@@ -127,3 +129,21 @@ def forgot_password(request):
 
 def setting(request):
     return render(request, 'register/settings.html')
+
+@csrf_exempt
+def change_img(request):
+    if request.method == "POST":
+        
+        if (myUser.objects.filter(id=request.POST["id"]).exists()):
+            user = myUser.objects.get(id=request.POST["id"])
+            user.image = request.FILES["image"]
+            user.save()
+            is_changed = True
+        else:
+            is_changed = False
+    context = {
+        "is_changed": is_changed,
+    }
+    return JsonResponse(context)
+    
+

@@ -20,6 +20,8 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login/login.html'), name='login'),
     path('forgot_passward/', account_view.forgot_password,name='forgot_password'),
     path('register/',account_view.register,name='register'),
+    path('change_img/',account_view.change_img,name='change_img'),
+
     path('search/',clothe_view.search,name='search'),
     path('clothe/add',clothe_view.add,name='add_clothe'),
     path('clothe/edit/<int:pk>',clothe_view.edit,name='edit_clothe'),
