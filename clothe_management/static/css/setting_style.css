@@ -134,6 +134,7 @@
         .info_photo_indiv {
             width: 80px;
             height: 80px;
+            margin-right: 20px;
         }
 
         .photo {
