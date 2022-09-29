@@ -6,6 +6,7 @@ from account.models import myUser
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+from django.contrib.auth.hashers import check_password
 
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -85,12 +86,14 @@ def register(request):
     else:
         form = UserForm()
         return render(request, "register/register.html", {'form': form})
+    return render(request, "register/register.html")
 
 def login(request):
     return render(request,"login/login.html")
 
 def home(request):
     index_urls = list(zip(img_urls, page_urls))
+    print(index_urls)
     context = {
         "urls" : index_urls,
     }
@@ -128,6 +131,23 @@ def forgot_password(request):
     return render(request, "login/forgot_password.html",context)
 
 def setting(request):
+    if request.method == "POST" :
+        user = request.user
+        print(user.password)
+        if not check_password(request.POST.get("password1"),user.password):
+            return render(request, 'register/settings.html', {"error_msg" : "비밀번호를 다시 입력하세요."})
+        elif request.POST.get("password1") != request.POST.get("password2"):
+            return render(request, 'register/settings.html', {"error_msg" : "비밀번호가 일치하지 않습니다."})
+        else:
+            user.set_password(request.POST.get("password1"))
+            
+        user.first_name = request.POST.get("first_name")
+        user.last_name = request.POST.get("last_name")
+        
+        user.gender = request.POST.get("gender")
+        user.age = int(request.POST.get("age"))
+        user.save()
+        return render(request, 'register/settings.html')
     return render(request, 'register/settings.html')
 
 @csrf_exempt

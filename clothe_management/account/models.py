@@ -9,7 +9,7 @@ from django.contrib.auth.hashers import make_password
 class myUser(AbstractUser):
     gender = models.CharField(max_length=10)
     age = models.IntegerField()
-    image = models.ImageField(upload_to = 'images/',default = "/static/img/account.png")
+    image = models.ImageField(upload_to = 'images/',default = "none")
     unread_message = models.IntegerField(null=False,default=0)
 
     def set_password(self, raw_password):

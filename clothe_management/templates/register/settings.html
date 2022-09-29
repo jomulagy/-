@@ -59,7 +59,11 @@
         </div>
         <div class="middlebar">
             <div class="container" id="user_img_div">
-                <img id="user_img" src="{% static 'img/user.png' %}" alt="">
+                {% if user.image != "none" %}
+                    <img id="user_img" src="{% static 'img/user.png' %}" alt="">
+                {% else %}
+                    <image class="photo" src="{{user.image.url}}" alt=""></image>
+                {% endif %}
             </div>
             <div class="container" id="user_info_div">
                 <div>
@@ -87,38 +91,51 @@
                 </div>
                 <div class="info_photo_outdiv">
                     <div class="info_photo_indiv">
-                        <image class="photo" src="{{user.image}}" alt=""></image>
+                        {% if user.image != "none" %}
+                            <img id="user_img" src="{% static 'img/user.png' %}" alt="">
+                        {% else %}
+                            <image class="photo" src="{{user.image.url}}" alt=""></image>
+                        {% endif %}
                     </div>
                     <div>회원님을 알릴수 있는 사진을 등록해주세요.</div>
                 </div>
                 <button class="btn btn-secondary" id="photo_modify_btn">사진변경</button>
             </div>
-            <form class="user" method = "post" action = "{% url 'register' %}">
+            <form class="user" method = "post" action = "{% url 'settings' %}">
                 {% csrf_token %}
                 {% include 'login/form_error.html' %}
             
                 <div class="mb-3">
                     <div>First Name</div>
                   
-                    <input type="text" class="form-control" name = "first_name" placeholder="First Name">
+                    <input type="text" class="form-control" name = "first_name" placeholder="First Name" value = "{{user.first_name}}">
                 </div>
                 <div class="mb-3">
                     <div>Last Name</div>
-                    <input type="text" class="form-control" name = "last_name">
+                    <input type="text" class="form-control" name = "last_name" value = "{{user.last_name}}" >
                 </div>
                 <div class="mb-3">
                     <div>Id(email)</div>
-                    <input type="email" class="form-control" name = "username" autocomplete = "off">
+                    <!-- 입력 받을거 아니니까 입력 못하게 해주세요 -->
+                    <input type="email" class="form-control" name = "username" autocomplete = "off" value = "{{user.username}}">
                 </div>
+                <!-- 패스워드는 자기가 다시 입력하게 합니다 -->
                 <div class="mb-3">
                     <div>Password</div>
                     <input type="password" class="form-control" name = "password1" autocomplete = "off">
                 </div>
                 <div class="mb-3">
+                    <!-- 검사는 백엔드에서 합니다 -->
                     <div>비밀번호 확인</div>
                     <input type="password" class="form-control" name = "password2" autocomplete = 'off'>
+                    
                 </div>
+                <!-- 에러 메세지 -->
+                {% if error_msg %}
+                    <p>{{error_msg}}</p>
+                {% endif %}
                 <div class="mb-3">
+                    <!-- {{user.gender}} 로 받아서 체크 되게 해주세요 -->
                     <div>성별</div>
                     <div>
                         <input type="radio" id="male" name="gender" value="male">
@@ -129,7 +146,7 @@
                 </div>
                 <div class="mb-3">
                     <div>나이</div>
-                    <input type = 'number' class="form-control" name = "age">
+                    <input type = 'number' class="form-control" name = "age" value = "{{user.age}}">
                 </div>
                 <div class="container submit_btn">
                     <input type = 'submit'  class="btn btn-success" value="정보수정">
