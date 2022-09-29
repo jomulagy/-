@@ -165,5 +165,7 @@ def change_img(request):
         "is_changed": is_changed,
     }
     return JsonResponse(context)
-    
+
+def secession(request):
+    return render(request, "register/secession.html")
 

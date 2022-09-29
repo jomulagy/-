@@ -21,6 +21,7 @@ urlpatterns = [
     path('forgot_passward/', account_view.forgot_password,name='forgot_password'),
     path('register/',account_view.register,name='register'),
     path('change_img/',account_view.change_img,name='change_img'),
+    path('secession/',account_view.secession,name='secession'),
 
     path('search/',clothe_view.search,name='search'),
     path('clothe/add',clothe_view.add,name='add_clothe'),
