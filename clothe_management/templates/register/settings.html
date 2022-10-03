@@ -119,8 +119,7 @@
                 </div>
                 <div class="mb-3">
                     <div>Id(email)</div>
-                    <!-- 입력 받을거 아니니까 입력 못하게 해주세요 -->
-                    <input type="email" class="form-control" name = "username" autocomplete = "off" value = "{{user.username}}">
+                    <input type="email" class="form-control" name = "username" autocomplete = "off" value = "{{user.username}}" disabled>
                 </div>
                 <!-- 패스워드는 자기가 다시 입력하게 합니다 -->
                 <div class="mb-3">
@@ -141,10 +140,17 @@
                     <!-- {{user.gender}} 로 받아서 체크 되게 해주세요 -->
                     <div>성별</div>
                     <div>
-                        <input type="radio" id="male" name="gender" value="male">
+                        {% if user.gender == "male" %}
+                        <input type="radio" id="male" name="gender" value="male" checked disabled>
                         <label for="male">남</label>
-                        <input type="radio" id="female" name="gender" value="female">
+                        <input type="radio" id="female" name="gender" value="female"disabled>
                         <label for="female">여</label>
+                        {% else %}
+                        <input type="radio" id="male" name="gender" value="male" disabled>
+                        <label for="male">남</label>
+                        <input type="radio" id="female" name="gender" value="female" checked disabled>
+                        <label for="female">여</label>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="mb-3">
