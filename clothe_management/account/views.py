@@ -181,3 +181,15 @@ def secession(request):
     
     return render(request, "register/secession.html")
 
+@csrf_exempt
+def check_pwd(request):
+    data = json.loads(request.body)
+    user = myUser.objects.get(id = data['id'])
+    
+    if user:
+        if not check_password(data['pwd'],user.password):
+            return JsonResponse({"msg" : "pwd is not valid"})
+        else:
+            return JsonResponse({"msg" : "pwd is valid"})
+    else:
+        return JsonResponse({"msg" : "id is not valid"})

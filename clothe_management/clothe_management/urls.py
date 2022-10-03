@@ -22,7 +22,8 @@ urlpatterns = [
     path('register/',account_view.register,name='register'),
     path('change_img/',account_view.change_img,name='change_img'),
     path('secession/',account_view.secession,name='secession'),
-
+    path('check_pwd/',account_view.check_pwd,name = "check_pwd"),
+    
     path('search/',clothe_view.search,name='search'),
     path('clothe/add',clothe_view.add,name='add_clothe'),
     path('clothe/edit/<int:pk>',clothe_view.edit,name='edit_clothe'),
