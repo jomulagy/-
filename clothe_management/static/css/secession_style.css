@@ -1,0 +1,135 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+}
+
+.comu_header {
+    margin-top: 1rem;
+    height: 20vh;
+    width: 100%;
+    position: relative;
+}
+
+.chat_list_btn {
+    position: absolute;
+    right: 10rem;
+    border: none;
+    background-color: lightgray;
+    height: 2rem;
+    padding: 0 1rem 0 1rem;
+    font-size: 0.8rem;
+    border-radius: 1rem;
+}
+
+.my_page_btn {
+    position: absolute;
+    right: 5rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.my_page_btn #my_page_img{
+    object-fit: contain;
+    width: inherit;
+}
+
+.comu_logo {
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+.comu_logo #logo_img{
+    height: inherit;
+    object-fit: contain;
+}
+
+.main_wrap{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main_nav {
+    width: 80vw;
+    background-color: lightgray;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.main_nav .main_nav_col{
+    font-size: 1rem;
+}
+
+main {
+    margin-top: 1rem;
+    width: 80vw;
+    display: flex;
+}
+
+.main_section {
+    flex: 4;
+    border: 1px solid black;
+    min-height: 50vh;
+    height: fit-content;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.secession_form {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    padding: 2rem;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    width: 60%;
+}
+
+.secession_form>input {
+    width: 100%;
+}
+
+.secession_btn {
+    border: none;
+    background-color: lightgray;
+    border-radius: 1rem;
+}
+
+.side_section {
+    min-height: 50vh;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.side_content {
+    background-color: lightgray;
+    flex: 1;
+    margin: 2px;
+    border-radius: 0.5rem;
+}
+
+.side_title {
+    border-bottom: 1px solid black;
+}

@@ -20,215 +20,68 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
+    <link rel="stylesheet" href="{% static 'css/secession_style.css' %}">
+
+        <!-- bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
     <title>open your closet</title>
-    <style>
-        @font-face {
-            font-family: 'Pretendard-Regular';
-            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        body {
-            font-family: 'Pretendard-Regular';
-            font-size: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .comu_header {
-            height: 20vh;
-            width: 100%;
-            position: relative;
-        }
-
-        .chat_list_btn {
-            position: absolute;
-            right: 10rem;
-            border: none;
-            background-color: lightgray;
-            height: 2rem;
-            padding: 0 1rem 0 1rem;
-            font-size: 0.8rem;
-        }
-
-        .my_page_btn {
-            position: absolute;
-            right: 5rem;
-            width: 2rem;
-            height: 2rem;
-        }
-
-        .comu_logo {
-            width: inherit;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        nav {
-            width: 80vw;
-            height: 1rem;
-            background-color: lightgray;
-            display: flex;
-            justify-content: space-around;
-            padding: 0.5rem 0 0.5rem 0;
-        }
-
-        main {
-            margin-top: 1rem;
-            width: 80vw;
-            display: flex;
-        }
-
-        .main_section {
-            flex: 4;
-            border: 1px solid black;
-            min-height: 50vh;
-            height: fit-content;
-            border-radius: 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .secession_form {
-            display: flex;
-            flex-direction: column;
-            background-color: lightgray;
-            padding: 2rem;
-            margin-top: 1rem;
-            border-radius: 1rem;
-            width: 60%;
-        }
-
-        .secession_form>input {
-            width: 100%;
-        }
-
-        .secession_btn {
-            border: none;
-            background-color: lightgray;
-            border-radius: 1rem;
-        }
-
-        .side_section {
-            min-height: 50vh;
-            height: fit-content;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex: 1;
-        }
-
-        .side_content {
-            background-color: lightgray;
-            flex: 1;
-            margin: 2px;
-            border-radius: 0.5rem;
-        }
-
-        .side_title {
-            border-bottom: 1px solid black;
-        }
-
-        #modal.modal-overlay {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        #modal .modal-window {
-            background-color: white;
-            border-radius: 1rem;
-            width: 400px;
-            height: 200px;
-            position: relative;
-            padding: 10px;
-        }
-
-        #modal .title {
-            padding-left: 10px;
-            display: inline;
-            color: black;
-        }
-
-        #modal .title h2 {
-            display: inline;
-        }
-
-        #modal .close-area {
-            display: inline;
-            float: right;
-            padding-right: 10px;
-            cursor: pointer;
-            color: black;
-        }
-
-        #modal .content {
-            margin-top: 20px;
-            padding: 0px 10px;
-            color: black;
-        }
-    </style>
 </head>
 
 <body>
     <header class="comu_header">
         <button class="chat_list_btn">채팅목록</button>
         <button class="my_page_btn">
-            <img src="{% static 'img/comu_logo.png' %}" alt="">
+            <img id='my_page_img' src="{% static 'img/user.png' %}" alt="">
         </button>
         <div class="comu_logo">
-            <img src="{% static 'img/comu_logo.png' %}" alt="">
+            <img id='logo_img' src="{% static 'img/comu_logo.png' %}" alt="">
         </div>
     </header>
-    <nav>
-        <div class="nav_col">자유게시판</div>
-        <div class="nav_col">사고팔고</div>
-        <div class="nav_col">소통방</div>
-        <div class="nav_col">공지사항</div>
-        <div class="nav_col">고객센터</div>
-    </nav>
-    <main>
-        <section class="main_section">
-            <div class="main_title">OpenYourCloset을 탈퇴하시겠습니까?</div>
-            <form action="" class="secession_form">
-                UserId
-                <input type="text" class="userId">
-                UserPassword
-                <input type="text" class="userPwd">
-            </form>
-            <button class="secession_btn">탈퇴하기</button>
-        </section>
-        <section class="side_section">
-            <div class="side_content">
-                <div class="side_title">실시간게시판</div>
-                <div class="side_content"></div>
-            </div>
-            <div class="side_content">
-                <div class="side_title">HOT게시판</div>
-                <div class="side_content"></div>
-            </div>
-        </section>
-    </main>
-    <script>
-        $(document).ready(function () {
-            console.log('1');
-            $('.secession_btn').click(function () {
-                alert("그동안 이용해주셔서 감사합니다")
-            }
-        }
+    <div class="main_wrap">
+        <div class="main_nav">
+            <div class="main_nav_col">자유게시판</div>
+            <div class="main_nav_col">사고팔고</div>
+            <div class="main_nav_col">소통방</div>
+            <div class="main_nav_col">공지사항</div>
+            <div class="main_nav_col">고객센터</div>
+        </div>
+            
+        <main>
+            <section class="main_section">
+                <div class="main_title">OpenYourCloset을 탈퇴하시겠습니까?</div>
+                <form action="" class="secession_form">
+                    UserId
+                    <input type="text" class="userId">
+                    UserPassword
+                    <input type="text" class="userPwd">
+                </form>
+                <button class="secession_btn">탈퇴하기</button>
+            </section>
+            <section class="side_section">
+                <div class="side_content">
+                    <div class="side_title">실시간게시판</div>
+                    <div class="side_content"></div>
+                </div>
+                <div class="side_content">
+                    <div class="side_title">HOT게시판</div>
+                    <div class="side_content"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+   
+    <script type="text/javascript">
+           $('.secession_btn').click(function(){
+            alert('그동안 Open Your Closet을 사용해 주셔서 감사합니다')
+           });
     </script>
 </body>
 
