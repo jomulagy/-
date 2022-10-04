@@ -187,6 +187,7 @@ def check_pwd(request):
     user = myUser.objects.filter(id = data['id'])
     
     if user.exists():
+        user = user[0]
         if not check_password(data['pwd'],user.password):
             return JsonResponse({"result": False, "error" : "PWDError"})
         else:
