@@ -57,11 +57,9 @@
         <main>
             <section class="main_section">
                 <div class="main_title">OpenYourCloset을 탈퇴하시겠습니까?</div>
-                <form action="" class="secession_form">
-                    UserId
-                    <input type="text" class="userId">
+                <form action="" class="secession_form" onsubmit="return false;">
                     UserPassword
-                    <input type="text" class="userPwd">
+                    <input type="password" class="userPwd" >
                 </form>
                 <button class="secession_btn">탈퇴하기</button>
             </section>
@@ -77,7 +75,23 @@
             </section>
         </main>
     </div>
+    <div class="modal-wrap">
+        <div class="modal" id="modaltarget">
+            <div class="modal-header">
+                <div class="modal-title">OpenYourCloset</div>
+                <button class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                   <div class="modal_row">OpenYourCloset을 정말로 탈퇴하시겠습니까?</div>
+                   <div class="modal_row">
+                    <button class="modal_btn" id="modal_secession_btn">탈퇴하기</button>
+                    <button class="modal_btn" id="modal_return_btn">돌아가기</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="{% static 'js/secession.js' %}"></script>
+    <script type = "text/javascript">var user_id = "{{user.id}}"</script>
 </body>
 
 </html>
