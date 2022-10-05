@@ -36,43 +36,18 @@
 </head>
 
 <body>
-    <header class="comu_header">
-        <button class="chat_list_btn">채팅목록</button>
-        <button class="my_page_btn">
-            <img id='my_page_img' src="{% static 'img/user.png' %}" alt="">
-        </button>
-        <div class="comu_logo">
-            <img id='logo_img' src="{% static 'img/comu_logo.png' %}" alt="">
-        </div>
-    </header>
-    <div class="main_wrap">
-        <div class="main_nav">
-            <div class="main_nav_col">자유게시판</div>
-            <div class="main_nav_col">사고팔고</div>
-            <div class="main_nav_col">소통방</div>
-            <div class="main_nav_col">공지사항</div>
-            <div class="main_nav_col">고객센터</div>
-        </div>
-
+    {% include "post/base.html" %}
+    {% include "post/side.html" %}
         <main>
             <section class="main_section">
-                <div class="main_title">OpenYourCloset을 탈퇴하시겠습니까?</div>
+                <div class="main_title">비밀번호를 입력해주세요.</div>
                 <form action="" class="secession_form" onsubmit="return false;">
-                    UserPassword
+                    비밀번호
                     <input type="password" class="userPwd" >
                 </form>
                 <button class="secession_btn">탈퇴하기</button>
             </section>
-            <section class="side_section">
-                <div class="side_content">
-                    <div class="side_title">실시간게시판</div>
-                    <div class="side_content"></div>
-                </div>
-                <div class="side_content">
-                    <div class="side_title">HOT게시판</div>
-                    <div class="side_content"></div>
-                </div>
-            </section>
+            
         </main>
     </div>
     <div class="modal-wrap">
@@ -84,7 +59,11 @@
             <div class="modal-body">
                    <div class="modal_row">OpenYourCloset을 정말로 탈퇴하시겠습니까?</div>
                    <div class="modal_row">
-                    <button class="modal_btn" id="modal_secession_btn">탈퇴하기</button>
+                    <form method = "POST" action="{% url 'secession' %}" >
+                        {%csrf_token%}
+                        <input class="modal_btn" id="modal_secession_btn"type = "submit" value = "탈퇴하기">
+                    </form>
+                    
                     <button class="modal_btn" id="modal_return_btn">돌아가기</button>
                 </div>
             </div>
