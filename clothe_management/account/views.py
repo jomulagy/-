@@ -167,17 +167,10 @@ def change_img(request):
 
 def secession(request):
     if request.method == 'POST':
-        user = request.user
-        
-        if not (myUser.objects.filter(id=request.POST["id"]).exists()):
-            return render(request, "register/secession.html",{"error_msg" : "아이디를 확인하세요."})
-        elif not check_password(request.POST.get("password1"),request.user.password):
-            return render(request, "register/secession.html",{"error_msg" : "아이디를 확인하세요."})
-        else:
-            request.user.delete()
-            logout(request)
-            messages.success(request, "회원탈퇴가 완료되었습니다.")
-            return redirect('login')
+        request.user.delete()
+        logout(request)
+        messages.success(request, "회원탈퇴가 완료되었습니다.")
+        return redirect('login')
     
     return render(request, "register/secession.html")
 
