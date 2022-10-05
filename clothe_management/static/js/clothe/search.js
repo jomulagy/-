@@ -8,6 +8,9 @@ $(document).ready(function(){
     if (keyward == ''){
         clothes = []
     }
+    else if(clothes.length==2){
+        clothes = []
+    }
     else{
         clothes = clothes.split(",")
         for(var url of clothes){
@@ -77,9 +80,9 @@ function print_pagenations(){
 function print_clothes(page_num){
     var container = $("#card-area")
     var start = 20*page_num;
-    var end = (img_url.length<20*(page_num+1)-1)?img_url.length:20*(page_num+1)-1
+    var end = (img_url.length<20*(page_num+1)-1)?img_url.length:20*(page_num+1)
     
-    for(var i = start; i<=end;i++){
+    for(var i = start; i<end;i++){
         if(i%4==0){
             var row = document.createElement('div');
             $(row).addClass('row row-cols-4')
