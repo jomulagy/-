@@ -1,14 +1,63 @@
 
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <input type='button' onclick=location.href="{% url 'chattings' '0' %}" value = '채팅목록'>
-    <input type='button' onclick=location.href="{% url 'settings' %}" value = '프사'>
+
+    <link rel="stylesheet" href="{% static 'css/secession_style.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/secession_style.css' %}">
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+    <title>open your closet</title>
+</head>
+<body>
+    <header class="comu_header">
+        <button class="chat_list_btn" onclick=location.href="{% url 'chattings' '0' %}" >채팅목록</button>
+        <button class="my_page_btn" onclick=location.href="{% url 'settings' %}">
+            <img id='my_page_img' src="{% static 'img/user.png' %}" alt="">
+        </button>
+        <div class="comu_logo">
+            <img id='logo_img' src="{% static 'img/comu_logo.png' %}" alt="">
+        </div>
+    </header>
     
+    <div class="main_wrap">
+        <div class="main_nav">
+            <div class="main_nav_col">
+                <a href="{% url 'boards' '자유게시판'%}">자유게시판</a>
+            </div>
+            <div class="main_nav_col">
+                <a href="{% url 'boards' '사고팔고'%}">사고팔고</a>
+            </div>
+            <div class="main_nav_col">
+                <a href="{% url 'boards' '소통방'%}">소통방</a>
+            </div>
+            <div class="main_nav_col">
+                <a href="{% url 'boards' '공지사항'%}">공지사항</a>
+            </div>
+            <div class="main_nav_col">
+                <a href="{% url 'boards' '고객센터'%}">고객센터</a>
+            </div>
+        </div>
 
-    <input type='button' onclick=location.href="{% url 'boards' '자유게시판'%}" value = '자유게시판'>
-    <input type='button' onclick=location.href="{% url 'boards' '사고팔고'%}" value = '사고팔고'>
-    <input type='button' onclick=location.href="{% url 'boards' '소통방'%}" value = '소통방'>
-    <input type='button' onclick=location.href="{% url 'boards' '공시사항'%}" value = '공시사항'>
-    <input type='button' onclick=location.href="{% url 'boards' '고객센터'%}" value = '고객센터'>
-
+</body>
     
     

@@ -62,7 +62,7 @@
         </div>
         <div class="middlebar">
             <div class="container" id="user_img_div">
-                {% if user.image != "none" %}
+                {% if user.image == "none" %}
                     <img id="user_img" src="{% static 'img/user.png' %}" alt="">
                 {% else %}
                     <image class="photo" src="{{user.image.url}}" alt=""></image>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="info_photo_outdiv">
                     <div class="info_photo_indiv">
-                        {% if user.image != "none" %}
+                        {% if user.image == "none" %}
                             <img id="user_img" src="{% static 'img/user.png' %}" alt="">
                         {% else %}
                             <image class="photo" src="{{user.image.url}}" alt=""></image>
