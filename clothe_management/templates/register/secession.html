@@ -37,7 +37,6 @@
 
 <body>
     {% include "post/base.html" %}
-    {% include "post/side.html" %}
         <main>
             <section class="main_section">
                 <div class="main_title">비밀번호를 입력해주세요.</div>
@@ -47,7 +46,8 @@
                 </form>
                 <button class="secession_btn">탈퇴하기</button>
             </section>
-            
+            {% include "post/side.html" %}
+
         </main>
     </div>
     <div class="modal-wrap">
