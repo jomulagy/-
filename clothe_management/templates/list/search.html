@@ -42,67 +42,98 @@
     </blockquote>
   </header>
   <main class='container'>
-    <section class="row align-items-start bar" id="top_bar">
-      <div class="col" id="s1">Top</div>
-      <div class="col" id="s2">Bottom</div>
-      <div class="col" id="s3">Shoes</div>
-      <div class="col" id="s4">ACCS</div>
-    </section>
-    <div id="card-area" class='container'></div>
-    <section class="more_section">
-      <a id="top_more_btn" href="">더보기</a>
-    </section>
-    <section class="row align-items-start bar" id="bottom_bar">
-      <div class="col" id="s1">Top</div>
-      <div class="col" id="s2">Bottom</div>
-      <div class="col" id="s3">Shoes</div>
-      <div class="col" id="s4">ACCS</div>
-    </section>
+    <div class = "area" id = "top_area" style = "display:block">
+      <section class="row align-items-start bar" id="top_bar">
+        <div class="col" id="s1">Top</div>
+        <div class="col" id="s2">Bottom</div>
+        <div class="col" id="s3">Shoes</div>
+        <div class="col" id="s4">ACCS</div>
+      </section>
+      
+      <div id="card-area" class='container'></div>
+      {% if clothes %}
+        {% if clothes|length > 20 %}
+          <section class="more_section">
+            <a id="top_more_btn" href="{% url 'clothe_view' 'parent_category?=top' %}">더보기</a>
+          </section>
+        {% endif %}
+      {% else %}
+      <section class="more_section">
+        <p>검색결과가 없습니다.</p>
+      </section>
+      {% endif %}
+    </div>
+    
+    <div class = "area" id = "bottom_area" style = "display:none">
+      <section class="row align-items-start bar" id="bottom_bar">
+        <div class="col" id="s1">Top</div>
+        <div class="col" id="s2">Bottom</div>
+        <div class="col" id="s3">Shoes</div>
+        <div class="col" id="s4">ACCS</div>
+      </section>
 
-    <section class="more_section">
-      <a id="bottom_more_btn" href="">더보기</a>
-    </section>
-    <section class="row align-items-start bar" id="shoes_bar">
-      <div class="col" id="s1">Top</div>
-      <div class="col" id="s2">Bottom</div>
-      <div class="col" id="s3">Shoes</div>
-      <div class="col" id="s4">ACCS</div>
-    </section>
+      {% if clothes %}
+        {% if clothes|length > 20 %}
 
-    <section class="more_section">
-      <a id="shoes_more_btn" href="">더보기</a>
-    </section>
-    <section class="row align-items-start bar" id="accs_bar">
-      <div class="col" id="s1">Top</div>
-      <div class="col" id="s2">Bottom</div>
-      <div class="col" id="s3">Shoes</div>
-      <div class="col" id="s4">ACCS</div>
-    </section>
+        <section class="more_section">
+          <a id="bottom_more_btn" href="{% url 'clothe_view' 'parent_category?=bottom' %}">더보기</a>
+        </section>
+        {% endif %}
+      {% else %}
+      <section class="more_section">
+        <p>검색결과가 없습니다.</p>
+      </section>
+      {% endif %}
+    </div>
+    <div class = "area" id = "shoes_area" style = "display:none">
+      <section class="row align-items-start bar" id="shoes_bar">
+        <div class="col" id="s1">Top</div>
+        <div class="col" id="s2">Bottom</div>
+        <div class="col" id="s3">Shoes</div>
+        <div class="col" id="s4">ACCS</div>
+      </section>
+      {% if clothes %}
+        {% if clothes|length > 20 %}
 
-    <section class="more_section">
-      <a id="accs_more_btn" href="">더보기</a>
-    </section>
+          <section class="more_section">
+            <a id="shoes_more_btn" href="{% url 'clothe_view' 'parent_category?=shoes' %}">더보기</a>
+          </section>
+        {% endif %}
+      {% else %}
+      <section class="more_section">
+        <p>검색결과가 없습니다.</p>
+      </section>
+      {% endif %}
+    </div>
+    <div class = "area" id = "accs_area" style = "display:none">
+      <section class="row align-items-start bar" id="accs_bar">
+        <div class="col" id="s1">Top</div>
+        <div class="col" id="s2">Bottom</div>
+        <div class="col" id="s3">Shoes</div>
+        <div class="col" id="s4">ACCS</div>
+      </section>
+      {% if clothes %}
+        {% if clothes|length > 20 %}
+          <section class="more_section">
+            <a id="accs_more_btn" href="{% url 'clothe_view' 'parent_category?=ACCs' %}">더보기</a>
+          </section>
+        {% endif %}
+
+      {% else %}
+      <section class="more_section">
+        <p>검색결과가 없습니다.</p>
+      </section>
+        
+      {% endif %}
+    </div>
    
 
   </main>
-  <nav id="search_pagination" aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+  
 </body>
 
 </html>
-<script type="text/javascript">var clothes = "{{clothes}}"</script>
+<script type="text/javascript">var clothes = {{clothes|safe}}</script>
 <script src="{% static 'js/clothe/search.js' %}"></script>
 <!-- 반복되지 않는 부분 끝 -->
 {% endblock content %}

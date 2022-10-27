@@ -15,7 +15,7 @@ def search(request):
         datas = clothe.objects.filter(user_id = userid, name__contains = keyward)
         
         for data in datas:
-            clothes.append(data.image.url)
+            clothes.append(({"url" : data.image.url,"id" : data.id,"name":data.name}))
         return render(request, 'list/search.html',{'userid':userid,'keyward':keyward, 'clothes':clothes})
 
 def add(request):

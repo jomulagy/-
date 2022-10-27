@@ -1,86 +1,21 @@
-var img_url =[]
-var page_num = 0
-var total_page_num
-
 $(document).ready(function(){
     $("#keyward").val(keyward);
-
-    if (keyward == ''){
-        clothes = []
-    }
-    else if(clothes.length==2){
-        clothes = []
-    }
-    else{
-        clothes = clothes.split(",")
-        for(var url of clothes){
-            img_url.push(url.substring(url.indexOf("&#x27;")+6,url.lastIndexOf("&#x27;")))
-        }
- 
-    }
-    print_clothes(page_num)
-    print_pagenations()
-
-    $('.page-item').click(function(){
-        $("#card-area").empty();
-    
-        var request_page = $(this).text();
-        if(request_page == 'Previous'){
-            request_page=parseInt(page_num)-1
-        }
-        else if(request_page == 'Next'){
-            request_page = parseInt(page_num)+1
-        }
-
-        $(".pagination>.page-item:first").removeClass("disabled");
-        $(".pagination>.page-item:last").removeClass("disabled");
-    
-        if (request_page == 1) {
-            $(".pagination>.page-item:first").addClass("disabled");
-        }
-        else if (request_page == total_page_num) {
-            $(".pagination>.page-item:last").addClass("disabled");
-        }
-        $(".pagination>.page-item").eq(page_num).removeClass("active");
-        $(".pagination>.page-item").eq(request_page).addClass("active");
-        if (img_url.length != 0){
-            print_clothes(request_page-1);
-        }
-        page_num = request_page;
-    
-    });
-
-    $('.pagination>.page-item:nth-child(2)').trigger("click");
+    print_clothes();
+    console.log($(".row-cols-4>.col"))
+    $(".row-cols-4>.col").click(function(){
+        location.href = "/clothe/detail/"+$(this).attr("id");
+    })
+    $(".row-cols-4>.col").hover(function(){
+        $(this).css('cursor', 'pointer');
+    })
+    $(".bar>.col").hover(function(){
+        $(this).css('cursor', 'pointer');
+    })
 });
-
-function print_pagenations(){  
-    var target = $('.pagination>.page-item:first-child')
-    if (img_url.length%20!=0){
-        total_page_num = parseInt(img_url.length/20)+1
-    }
-    else{
-        total_page_num = parseInt(img_url.length/20)
-    }
-    if(total_page_num==0){
-        total_page_num = 1
-    }
-    for(var i = 0;i<total_page_num;i++){
-        var page_item = document.createElement('li');
-        $(page_item).addClass('page-item');
-        $(target).after(page_item)
-        target = $(page_item);
-
-        var page_link = document.createElement('a');
-        $(page_link).addClass('page-link');
-        $(page_link).text(i+1);
-        page_item.append(page_link);
-    }
-    
-}
-function print_clothes(page_num){
+function print_clothes(){
     var container = $("#card-area")
-    var start = 20*page_num;
-    var end = (img_url.length<20*(page_num+1)-1)?img_url.length:20*(page_num+1)
+    var start = 0;
+    var end = (clothes.length<20)?clothes.length:20
     
     for(var i = start; i<end;i++){
         if(i%4==0){
@@ -90,16 +25,45 @@ function print_clothes(page_num){
         }
         var col = document.createElement('div');
         $(col).addClass('col')
+        $(col).attr("id",clothes[i].id);
+
         row.append(col)
 
         var card = document.createElement('div');
-        $(card).addClass('card')
+        $(card).addClass('card');
         col.append(card)
 
         var img = document.createElement('img');
-        $(img).addClass('card-img-top');
-        $(img).attr("src",img_url[i]);
+        $(img).addClass('card_img');
+        $(img).attr("src",clothes[i].url);
         card.append(img);
+
+        var card_body = document.createElement('div');
+        $(card_body).addClass('card-body');
+        card.append(card_body);
+
+        var card_title = document.createElement('h5');
+        $(card_title).addClass('card-title');
+        $(card_title).text(clothes[i].name);
+        card_body.append(card_title);
     }
 }
+
+
+$(".bar>.col").click(function(){
+    
+    $(".area").css("display",'none');
+    if($(this).attr("id") == "s1"){
+        $("#top_area").css("display","block");
+    }
+    else if($(this).attr("id") == "s2"){
+        $("#bottom_area").css("display","block");
+    }
+    else if($(this).attr("id") == "s3"){
+        $("#shoes_area").css("display","block");
+    }
+    else if($(this).attr("id") == "s4"){
+        $("#accs_area").css("display","block");
+    }
+});
 
