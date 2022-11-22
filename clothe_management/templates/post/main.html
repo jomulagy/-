@@ -4,7 +4,6 @@
 <!-- 반복되지 않는 부분 시작 -->
 <!-- base.html 에 '반복되지 않는 부분 시작' 바로 밑줄이라고 생각하고 작성할것-->
 {% include "post/base.html" %}
-{% include "post/side.html" %}
 <!-- <form action="{% url 'search' %}" method="post">
     {% csrf_token %}
 
@@ -15,12 +14,139 @@
 
   </form>
 <img src = "{{user.image}}"> -->
-<input type='button' onclick=location.href="{% url 'settings' %}" value = "내정보">
-<input type='button' onclick=location.href="{% url 'logout' %}" value = "로그아웃">
-<input type='button' onclick=location.href="{% url 'my_post' '내가쓴글' %}" value = "내가 쓴 글">
-<input type='button' onclick=location.href="{% url 'my_post' '댓글단글' %}" value = "댓글 단 글">
-<input type='button' onclick=location.href="{% url 'my_post' '스크랩' %}" value = "스크랩">
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/post_main_style.css' %}">
+  <title>Document</title>
+  <style>
+    .freeBoard_element{
+      height: 100px;
+      width: 95%;
+      background-color: #D9D9D9;
+      margin: 5px 0px 5px 0px;
+      display: flex;
+    }
 
+    .freeBoard_element_img_wrap{
+      flex: 1;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .freeBoard_element_img{
+      object-fit: contain;
+      height: 90%;
+    }
+
+    .freeBoard_element_info_wrap{
+      flex: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .freeBoard_element_footer{
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .freeBoard_element_footer_inner{
+      width: fit-content;
+      display: flex;
+    }
+
+    .likebtn_wrap, .comment_wrap{
+      width: 30px;
+      height: 15px;
+    }
+
+    .likebtn_img, .comment_img{
+      object-fit: contain;
+      height: inherit;
+    }
+
+    .date_wrap{
+      margin-right: 5px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="main_search_wrap_wrap">
+    <div class="main_search_wrap">
+      <form action="" class="main_search_form">
+        <input type="text" class="main_search">
+        <input type="button" value="검색">
+      </form>
+    </div>
+  </div>
+  <div class="main_main_section">
+    <div class="main_left">
+      <div class="main_left_header">
+        <div class="myImage_wrap">
+          <img class="main_user_img" src="../static/img/user.png" alt="">
+        </div>
+        <div class="myName">{{user.id}}</div>
+        <div class="myInfo_wrap">
+          <input class='myinfo' type='button' onclick=location.href="{% url 'settings' %}" value="내정보">
+          <input class='logoutbtn' type='button' onclick=location.href="{% url 'logout' %}" value="로그아웃">
+        </div>
+      </div>
+      <div class="main_left_wrap"></div>
+      <div class="main_left_main">
+        <input class='main_left_main_element' type='button' onclick=location.href="{% url 'my_post' '내가쓴글' %}" value="내가 쓴 글">
+        <input class='main_left_main_element' type='button' onclick=location.href="{% url 'my_post' '댓글단글' %}" value="댓글 단 글">
+        <input class='main_left_main_element' type='button' onclick=location.href="{% url 'my_post' '스크랩' %}" value="스크랩">
+      </div>
+    </div>
+    <div class="main_center">
+      <div class="freeBoard_wrap">
+        <div class="freeBoard_title"> 자유게시판</div>
+        <div class="freeBoard_area">
+          <div class="freeBoard_element">
+            <div class="freeBoard_element_img_wrap">
+              <img class="freeBoard_element_img" src="../static/img/user.png" alt="">
+            </div>
+            <div class="freeBoard_element_info_wrap">
+              <div class="freeBoard_element_title">그렌디오 반팔티셔츠 중고</div>
+              <div class="freeBoard_element_main">그렌디오 반팔티셔츠 중고 실착 3회 미만 2마넌에 팝니다 댓글남겨주시면 쪽지드려..</div>
+              <div class="freeBoard_element_footer">
+                <div class="freeBoard_element_footer_inner">
+                  <div class="likebtn_wrap">
+                    <img class='likebtn_img' src="../static/img/like.png" alt="">
+                  </div>
+                  <div class="comment_wrap">
+                    <img class='comment_img' src="../static/img/comment.png" alt="">
+                  </div>
+                  <div class="date_wrap">2022.07.28 19:03:33</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="freeBoard_element"></div>
+          <div class="freeBoard_element"></div>
+        </div>
+      </div>
+      <div class="purchaseAndSale_wrap">
+        <div class="purchaseAndSale_title"> 사고팔고</div>
+        <div class="purchaseAndSale_area"></div>
+      </div>
+    </div>
+    <div class="main_right">
+      {% include "post/side.html" %}
+    </div>
+  </div>
+</body>
+
+</html>
 <!-- 반복되지 않는 부분 끝 -->
 {% endblock content %}

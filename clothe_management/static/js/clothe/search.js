@@ -15,7 +15,7 @@ $(document).ready(function(){
 function print_clothes(){
     var container = $("#card-area")
     var start = 0;
-    var end = (clothes.length<20)?clothes.length:20
+    var end = (clothes.length<12)?clothes.length:12
     
     for(var i = start; i<end;i++){
         if(i%4==0){

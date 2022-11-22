@@ -1,0 +1,119 @@
+.main_search_wrap_wrap {
+    width: 80%;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px 0px 5px 0px;
+  }
+
+  .main_search_wrap {
+    height: inherit;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .main_main_section {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    height: fit-content;
+  }
+
+  .main_left,
+  .main_right {
+    width: 14%;
+    height: fit-content;
+  }
+
+  /*main left */
+  .main_left_header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #F5F5F5;
+    border: 1px solid #D9D9D9;
+  }
+
+  .myImage_wrap {
+    width: 100%;
+    height: fit-content;
+    padding: 5px;
+  }
+
+  .main_user_img{
+    object-fit: contain;
+    width: inherit;
+  }
+
+  .myInfo_wrap{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .myinfo, .logoutbtn{
+    width: fit-content;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+  }
+
+  .main_left_wrap{
+    width: 100%;
+    height: 16px;
+  }
+
+  .main_left_main{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #D9D9D9;
+  }
+
+  .main_left_main_element{
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    margin: 1px 0px 1px 0px;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+  }
+
+  /* main center */
+  .main_center {
+    width: 60%;
+    height: fit-content;
+    margin-bottom: 50px;
+  }
+
+  .freeBoard_wrap, .purchaseAndSale_wrap{
+    width: 100%;
+    height: fit-content;
+    background-color: #F5F5F5;
+    border: 1px solid #D9D9D9;
+    padding: 5px;
+    margin-bottom: 16px;
+  }
+
+  .freeBoard_title ,.purchaseAndSale_title{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .freeBoard_area, .purchaseAndSale_area{
+    padding: 10px 0px 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

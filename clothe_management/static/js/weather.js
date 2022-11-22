@@ -61,8 +61,6 @@ function loadSet($Icon){
       document.getElementById("weather_logo").src="../static/img/w0304.png";
       todayweather="살짝 흐린 날씨";
       document.getElementById("wicon").back;
-
-
   }
   else if($Icon=='04'){
       document.getElementById("weather_logo").src="../static/img/w0304.png";

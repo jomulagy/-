@@ -42,6 +42,7 @@
     </blockquote>
   </header>
   <main class='container'>
+
     <div class = "area" id = "top_area" style = "display:block">
       <section class="row align-items-start bar" id="top_bar">
         <div class="col" id="s1">Top</div>
@@ -52,7 +53,7 @@
       
       <div id="card-area" class='container'></div>
       {% if clothes %}
-        {% if clothes|length > 20 %}
+        {% if clothes|length > 12 %}
           <section class="more_section">
             <a id="top_more_btn" href="{% url 'clothe_view' 'parent_category?=top' %}">더보기</a>
           </section>
@@ -113,7 +114,8 @@
         <div class="col" id="s4">ACCS</div>
       </section>
       {% if clothes %}
-        {% if clothes|length > 20 %}
+      
+        {% if clothes|length > 12 %}
           <section class="more_section">
             <a id="accs_more_btn" href="{% url 'clothe_view' 'parent_category?=ACCs' %}">더보기</a>
           </section>
