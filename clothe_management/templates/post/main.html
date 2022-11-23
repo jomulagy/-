@@ -23,68 +23,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/post_main_style.css' %}">
   <title>Document</title>
-  <style>
-    .freeBoard_element{
-      height: 100px;
-      width: 95%;
-      background-color: #D9D9D9;
-      margin: 5px 0px 5px 0px;
-      display: flex;
-    }
-
-    .freeBoard_element_img_wrap{
-      flex: 1;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .freeBoard_element_img{
-      object-fit: contain;
-      height: 90%;
-    }
-
-    .freeBoard_element_info_wrap{
-      flex: 5;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-
-    .freeBoard_element_footer{
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .freeBoard_element_footer_inner{
-      width: fit-content;
-      display: flex;
-    }
-
-    .likebtn_wrap, .comment_wrap{
-      width: 30px;
-      height: 15px;
-    }
-
-    .likebtn_img, .comment_img{
-      object-fit: contain;
-      height: inherit;
-    }
-
-    .date_wrap{
-      margin-right: 5px;
-    }
-
-  </style>
 </head>
 
 <body>
   <div class="main_search_wrap_wrap">
     <div class="main_search_wrap">
       <form action="" class="main_search_form">
-        <input type="text" class="main_search">
+        <input type="text" class="main_search" placeholder="전체 게시판 글을 검색하세요.">
         <input type="button" value="검색">
       </form>
     </div>
@@ -95,7 +40,7 @@
         <div class="myImage_wrap">
           <img class="main_user_img" src="../static/img/user.png" alt="">
         </div>
-        <div class="myName">{{user.id}}</div>
+        <div class="myName">{{user.get_full_name}}</div>
         <div class="myInfo_wrap">
           <input class='myinfo' type='button' onclick=location.href="{% url 'settings' %}" value="내정보">
           <input class='logoutbtn' type='button' onclick=location.href="{% url 'logout' %}" value="로그아웃">
@@ -123,9 +68,11 @@
                 <div class="freeBoard_element_footer_inner">
                   <div class="likebtn_wrap">
                     <img class='likebtn_img' src="../static/img/like.png" alt="">
+                    30
                   </div>
                   <div class="comment_wrap">
                     <img class='comment_img' src="../static/img/comment.png" alt="">
+                    30
                   </div>
                   <div class="date_wrap">2022.07.28 19:03:33</div>
                 </div>
